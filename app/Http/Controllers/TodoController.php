@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Todo;
+use Inertia\Inertia;
 use Illuminate\Http\Request;
 
 class TodoController extends Controller
@@ -9,10 +11,14 @@ class TodoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-    }
+public function index()
+{
+    $todos = Todo::all();
+    \Log::debug('Todos:', $todos->toArray());
+    return Inertia::render('Todo', [
+        'todos' => $todos,
+    ]);
+}
 
     /**
      * Show the form for creating a new resource.
@@ -25,10 +31,19 @@ class TodoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
-    }
+   public function store(Request $request)
+{
+    $validated = $request->validate([
+        'title' => 'required|string|max:255',
+    ]);
+
+    Todo::create([
+        'title' => $validated['title'],
+        'is_completed' => false,
+    ]);
+
+    return redirect('/');
+}
 
     /**
      * Display the specified resource.
