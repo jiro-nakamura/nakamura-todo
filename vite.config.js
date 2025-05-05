@@ -10,4 +10,23 @@ export default defineConfig({
         }),
         react(),
     ],
+    server: {
+        host: '0.0.0.0',
+        port: 5174,
+        hmr: {
+            host: 'host.docker.internal',
+            clientPort: 5174,
+            protocol: 'ws',
+        },
+    },
+    resolve: {
+        alias: {
+            '@': '/resources/js',
+        },
+    },
+    build: {
+        rollupOptions: {
+            cache: false,
+        },
+    },
 });

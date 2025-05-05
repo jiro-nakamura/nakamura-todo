@@ -1,79 +1,46 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Todo;
-use Inertia\Inertia;
 use Illuminate\Http\Request;
 
 class TodoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-public function index()
-{
-    $todos = Todo::all();
-    \Log::debug('Todos:', $todos->toArray());
-    return Inertia::render('Todo', [
-        'todos' => $todos,
-    ]);
-}
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function index()
     {
-        //
+        return response()->json(Todo::all());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-   public function store(Request $request)
-{
-    $validated = $request->validate([
-        'title' => 'required|string|max:255',
-    ]);
-
-    Todo::create([
-        'title' => $validated['title'],
-        'is_completed' => false,
-    ]);
-
-    return redirect('/');
-}
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'due_date' => 'nullable|date',
+            'description' => 'nullable|string',
+        ]);
+        $todo = Todo::create($request->all());
+        return response()->json($todo, 201);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function show(Todo $todo)
     {
-        //
+        return response()->json($todo);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Todo $todo)
     {
-        //
+        $request->validate([
+            'title' => 'sometimes|string|max:255',
+            'due_date' => 'nullable|date',
+            'description' => 'nullable|string',
+            'is_completed' => 'sometimes|boolean',
+        ]);
+        $todo->update($request->all());
+        return response()->json($todo);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(Todo $todo)
     {
-        //
+        $todo->delete();
+        return response()->json(null, 204);
     }
 }
