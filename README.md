@@ -32,31 +32,31 @@ composer install
 
 
 
-Set up environment:
+## Set up environment:
 
 
 
 
 
-Copy .env.example to .env and configure DB_* settings.
+## Copy .env.example to .env and configure DB_* settings.
 
 cp .env.example .env
 
 
 
-Generate application key:
+## Generate application key:
 
 php artisan key:generate
 
 
 
-Run migrations:
+## Run migrations:
 
 php artisan migrate
 
 
 
-Start the server:
+## Start the server:
 
 php artisan serve
 
@@ -64,7 +64,7 @@ php artisan serve
 
 
 
-API will be available at [invalid url, do not cite].
+## API will be available at [invalid url, do not cite].
 
 API Testing
 
@@ -72,7 +72,7 @@ API Testing
 
 
 
-Use Postman to test endpoints.
+## Use Postman to test endpoints.
 
 
 
@@ -84,21 +84,21 @@ Example POST /api/todos:
     "description": "Test description"
 }
 
-Challenges and Solutions
+## Challenges and Solutions
 
 
 
 
 
-Issue: API routes (api/todos) were not registering, returning 404 errors.
+## Issue: API routes (api/todos) were not registering, returning 404 errors.
 
 
 
-Solution: Debugged RouteServiceProvider, fixed missing service providers (AuthServiceProvider, EventServiceProvider), and cleared cache.
+## Solution: Debugged RouteServiceProvider, fixed missing service providers (AuthServiceProvider, EventServiceProvider), and cleared cache.
 
 
 
-Learning: Gained deep understanding of Laravel's routing, service providers, and Docker-based environments.
+## Learning: Gained deep understanding of Laravel's routing, service providers, and Docker-based environments.
 
 Future Improvements
 
@@ -116,10 +116,10 @@ Add authentication (Sanctum) for secure API access.
 
 Implement unit tests with PHPUnit.
 
-About Me
+## About Me
 
 I am transitioning from an SIER dispatch role to a Web Engineer. This project demonstrates my ability to learn, troubleshoot, and deliver functional APIs. Contact: jrojirojiro@live.jp
 
-License
+## License
 
 MIT License
