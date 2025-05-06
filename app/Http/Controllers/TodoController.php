@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class TodoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json(Todo::all());
+        return $request->user()->todos()->whereNotNull('user_id')->get();
     }
 
     public function store(Request $request)
@@ -20,19 +20,15 @@ class TodoController extends Controller
             'description' => 'nullable|string',
         ]);
 
-        $todo = Todo::create([
+        $todo = $request->user()->todos()->create([
             'title' => $request->title,
             'due_date' => $request->due_date,
             'description' => $request->description,
             'is_completed' => false,
+            'user_id' => $request->user()->id,
         ]);
 
         return response()->json($todo, 201);
-    }
-
-    public function show(Todo $todo)
-    {
-        return response()->json($todo);
     }
 
     public function update(Request $request, $id)
@@ -44,15 +40,15 @@ class TodoController extends Controller
             'is_completed' => 'boolean',
         ]);
 
-        $todo = Todo::findOrFail($id);
+        $todo = $request->user()->todos()->whereNotNull('user_id')->findOrFail($id);
         $todo->update($request->only(['title', 'due_date', 'description', 'is_completed']));
 
         return response()->json($todo);
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $todo = Todo::findOrFail($id);
+        $todo = $request->user()->todos()->whereNotNull('user_id')->findOrFail($id);
         $todo->delete();
 
         return response()->json(null, 204);
