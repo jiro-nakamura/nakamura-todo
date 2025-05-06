@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>{{ config('app.name', 'Nakamura ToDo') }}</title>
         @viteReactRefresh
-        @vite('resources/js/app.jsx')
+        @vite(['resources/js/app.jsx', 'resources/css/app.css'])
         <script type="module">
             import RefreshRuntime from "/@react-refresh";
             RefreshRuntime.injectIntoGlobalHook(window);

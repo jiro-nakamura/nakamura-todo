@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Todo extends Model
 {
-    use HasFactory;
-
-    protected $fillable = ['title', 'is_completed', 'due_date', 'description'];
+    protected $table = 'todos';
+    protected $fillable = ['title', 'due_date', 'description', 'is_completed'];
+    protected $casts = [
+        'is_completed' => 'boolean',
+        'due_date' => 'date',
+    ];
 }

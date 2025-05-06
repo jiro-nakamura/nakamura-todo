@@ -1,7 +1,10 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TodoController;
 
-Route::get('test', function () { return 'テスト成功'; });
-Route::post('test', function () { return 'POST成功'; });
+Route::get('/todos', [TodoController::class, 'index']);
+Route::post('/todos', [TodoController::class, 'store']);
+Route::put('/todos/{id}', [TodoController::class, 'update']);
+Route::delete('/todos/{id}', [TodoController::class, 'destroy']);
 Route::apiResource('todos', TodoController::class);
