@@ -177,6 +177,20 @@ function Todo() {
     if (!token) {
         return (
             <div style={{ maxWidth: '800px', margin: '0 auto', padding: '20px' }}>
+                {/* バナー画像ここから */}
+                <div style={{ marginBottom: '24px', textAlign: 'center' }}>
+                    <img
+                        src="/Designer_2.jpeg"
+                        alt="バナー"
+                        style={{
+                            maxWidth: '100%',
+                            height: 'auto',
+                            borderRadius: '8px',
+                            boxShadow: '0 2px 8px rgba(0,0,0,0.08)'
+                        }}
+                    />
+                </div>
+                {/* バナー画像ここまで */}
                 <h1 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px' }}>
                     Nakamura ToDo - {isLogin ? 'ログイン' : '登録'}
                 </h1>
@@ -263,6 +277,20 @@ function Todo() {
 
     return (
         <div style={{ maxWidth: '800px', margin: '0 auto', padding: '20px' }}>
+            {/* バナー画像ここから */}
+            <div style={{ marginBottom: '24px', textAlign: 'center' }}>
+                <img
+                    src="/Designer.jpeg"
+                    alt="バナー"
+                    style={{
+                        maxWidth: '100%',
+                        height: 'auto',
+                        borderRadius: '8px',
+                        boxShadow: '0 2px 8px rgba(0,0,0,0.08)'
+                    }}
+                />
+            </div>
+            {/* バナー画像ここまで */}
             <h1 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px' }}>
                 Nakamura ToDo
             </h1>
