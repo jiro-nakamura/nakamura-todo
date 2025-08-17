@@ -218,9 +218,10 @@ function Todo() {
                 <input
                     style={{
                         border: '1px solid #ccc',
-                        padding: '8px',
-                        marginBottom: '10px',
+                        padding: '10px',
                         width: '100%',
+                        minWidth: 0,
+                        boxSizing: 'border-box'
                     }}
                     type="password"
                     value={password}
